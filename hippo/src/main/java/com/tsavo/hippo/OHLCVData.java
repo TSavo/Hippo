@@ -7,13 +7,15 @@ import java.util.SortedSet;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
 
 import com.xeiam.xchange.dto.marketdata.Trade;
 
 public class OHLCVData implements Comparable<OHLCVData> {
 
-	public Date startDate;
-	public long length;
+	public DateTime startDate;
+	public Duration length;
 
 	public BigDecimal open;
 	public BigDecimal high;
@@ -21,11 +23,21 @@ public class OHLCVData implements Comparable<OHLCVData> {
 	public BigDecimal close;
 	public BigDecimal volume;
 
-	public OHLCVData(Date aDate, long aLength, SortedSet<Trade> dbData) {
+	public OHLCVData(DateTime aDate, Duration aLength, BigDecimal aOpen, BigDecimal aHigh, BigDecimal aLow, BigDecimal aClose, BigDecimal aVolume){
 		startDate = aDate;
 		length = aLength;
-		Date endDate = new Date(startDate.getTime() + length);
-		List<Trade> trades = dbData.stream().filter(x -> x.getTimestamp().after(startDate) && x.getTimestamp().before(endDate)).collect(Collectors.toList());
+		open = aOpen;
+		high = aHigh;
+		low = aLow;
+		close = aClose;
+		volume = aVolume;
+	}
+	
+	public OHLCVData(DateTime aDate, Duration aLength, SortedSet<Trade> dbData) {
+		startDate = aDate;
+		length = aLength;
+		DateTime endDate = startDate.plus(aLength);
+		List<Trade> trades = dbData.stream().filter(x -> new DateTime(x.getTimestamp().getTime()).isAfter(startDate) && new DateTime(x.getTimestamp()).isBefore(endDate)).collect(Collectors.toList());
 		if (trades.size() == 0) {
 			return;
 		}
