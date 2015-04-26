@@ -32,24 +32,13 @@ public class TickerDatabase {
 	}
 
 	public void put(CurrencyPair aPair, Trade anOrder) {
-		map.child(aPair.toString()).runTransaction(new Transaction.Handler() {
-			@Override
-			public Transaction.Result doTransaction(MutableData currentData) {
-				MutableData order = currentData.child(anOrder.getId());
-				order.child("id").setValue(anOrder.getId());
-				order.child("amount").setValue(anOrder.getTradableAmount().setScale(8, RoundingMode.HALF_DOWN).stripTrailingZeros().floatValue());
-				order.child("price").setValue(anOrder.getPrice().setScale(8, RoundingMode.HALF_DOWN).stripTrailingZeros().floatValue());
-				order.child("timestamp").setValue(anOrder.getTimestamp().getTime());
-				order.child("type").setValue(anOrder.getType() == null ? null : anOrder.getType().toString().toLowerCase());
-				return Transaction.success(currentData);
-			}
-
-			@Override
-			public void onComplete(FirebaseError firebaseError, boolean committed, DataSnapshot currentData) {
-				System.out.println("Committed: " + committed + " " + exchangeName + " " + anOrder);
-			}
-		});
-
+		Firebase order = map.child(aPair.toString()).child(anOrder.getId());
+		order.child("id").setValue(anOrder.getId());
+		order.child("amount").setValue(anOrder.getTradableAmount().setScale(8, RoundingMode.HALF_DOWN).stripTrailingZeros().floatValue());
+		order.child("price").setValue(anOrder.getPrice().setScale(8, RoundingMode.HALF_DOWN).stripTrailingZeros().floatValue());
+		order.child("timestamp").setValue(anOrder.getTimestamp().getTime());
+		order.child("type").setValue(anOrder.getType() == null ? null : anOrder.getType().toString().toLowerCase());
+		System.out.println("Committed: " + exchangeName + " " + anOrder);
 	}
 
 	public SortedSet<Trade> get(CurrencyPair aPair) {
@@ -85,7 +74,8 @@ public class TickerDatabase {
 	}
 
 	public void addTradeListener(CurrencyPair aPair, TradeListener aListener) {
-		map.child(aPair.toString()).addChildEventListener(new ChildEventListener() {
+		Firebase pair = map.child(aPair.toString());
+		pair.addChildEventListener(new ChildEventListener() {
 
 			@Override
 			public void onChildRemoved(DataSnapshot arg0) {
@@ -100,19 +90,21 @@ public class TickerDatabase {
 			}
 
 			@Override
-			public void onChildChanged(DataSnapshot arg0, String arg1) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void onChildAdded(DataSnapshot x, String arg1) {
+			public void onChildChanged(DataSnapshot x, String arg1) {
+				if (x.getChildrenCount() < 5) {
+					return;
+				}
 				String id = x.getKey();
 				BigDecimal tradableAmount = new BigDecimal(x.child("amount").getValue().toString());
 				BigDecimal price = new BigDecimal(x.child("price").getValue().toString());
 				Date timestamp = new Date(Long.parseLong(x.child("timestamp").getValue().toString()));
 				OrderType type = x.child("type").getValue() == null ? null : x.child("type").getValue().toString().equals("ask") ? OrderType.ASK : OrderType.BID;
 				aListener.handleTrade(new Trade(type, tradableAmount, aPair, price, timestamp, id));
+
+			}
+
+			@Override
+			public void onChildAdded(DataSnapshot x, String arg1) {
 			}
 
 			@Override
@@ -124,31 +116,17 @@ public class TickerDatabase {
 	}
 
 	public void putAll(SortedSet<Trade> aList) {
-		map.runTransaction(new Transaction.Handler() {
-			@Override
-			public Transaction.Result doTransaction(MutableData currentData) {
-				aList.forEach(trade -> {
-					MutableData pair = currentData.child(trade.getCurrencyPair().toString());
-					MutableData order = pair.child(trade.getId());
-					order.child("id").setValue(trade.getId());
-					order.child("amount").setValue(trade.getTradableAmount().setScale(8, RoundingMode.HALF_DOWN).stripTrailingZeros().floatValue());
-					order.child("price").setValue(trade.getPrice().setScale(8, RoundingMode.HALF_DOWN).stripTrailingZeros().floatValue());
-					order.child("timestamp").setValue(trade.getTimestamp().getTime());
-					order.child("type").setValue(trade.getType() == null ? null : trade.getType().toString().toLowerCase());
+		aList.forEach(trade -> {
+			Firebase pair = map.child(trade.getCurrencyPair().toString());
+			Firebase order = pair.child(trade.getId());
+			order.child("id").setValue(trade.getId());
+			order.child("amount").setValue(trade.getTradableAmount().setScale(8, RoundingMode.HALF_DOWN).stripTrailingZeros().floatValue());
+			order.child("price").setValue(trade.getPrice().setScale(8, RoundingMode.HALF_DOWN).stripTrailingZeros().floatValue());
+			order.child("timestamp").setValue(trade.getTimestamp().getTime());
+			order.child("type").setValue(trade.getType() == null ? null : trade.getType().toString().toLowerCase());
 
-				});
-				return Transaction.success(currentData);
-
-			}
-
-			@Override
-			public void onComplete(FirebaseError firebaseError, boolean committed, DataSnapshot currentData) {
-				System.out.println("Committed: " + committed + " " + exchangeName + " " + aList.size() + " orders.");
-			}
 		});
-		
-		
-
+		System.out.println("Committed: " + aList.size() + " " + exchangeName + " " + aList.size() + " orders.");
 	}
 
 	public static void close() {

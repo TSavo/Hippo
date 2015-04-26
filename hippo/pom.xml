@@ -4,7 +4,7 @@
 	<groupId>com.tsavo</groupId>
 	<artifactId>hippo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
+	<name>Hippo</name>
 	<dependencies>
 		<dependency>
 			<groupId>com.xeiam.xchange</groupId>
