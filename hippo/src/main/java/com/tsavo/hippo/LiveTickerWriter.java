@@ -54,7 +54,7 @@ public class LiveTickerWriter {
 								lastTrades.put(pair, newTrades);
 								db.putAll(notSeen);
 								try {
-									Thread.sleep(1000 * 60);
+									Thread.sleep(10000);
 								} catch (InterruptedException e) {
 									return;
 								}
