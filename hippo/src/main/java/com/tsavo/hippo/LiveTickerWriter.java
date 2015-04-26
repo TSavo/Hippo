@@ -26,7 +26,6 @@ public class LiveTickerWriter {
 	private Thread updaterThread;
 	public volatile boolean running = true;
 	private Map<CurrencyPair, SortedSet<Trade>> lastTrades = new HashMap<>();
-	private List<TradeListener> listeners = new ArrayList<TradeListener>();
 	public Exchange exchange;
 
 	public LiveTickerWriter(final Exchange anExchange) {
@@ -54,9 +53,8 @@ public class LiveTickerWriter {
 								notSeen.removeAll(lastTrades.get(pair));
 								lastTrades.put(pair, newTrades);
 								db.putAll(notSeen);
-								listeners.forEach(listener -> notSeen.forEach(trade -> listener.handleTrade(trade)));
 								try {
-									Thread.sleep(10000);
+									Thread.sleep(1000 * 60);
 								} catch (InterruptedException e) {
 									return;
 								}
@@ -79,9 +77,6 @@ public class LiveTickerWriter {
 		running = false;
 	}
 
-	public void addListener(TradeListener aListener) {
-		listeners.add(aListener);
-	}
 
 	@Override
 	protected void finalize() throws Throwable {
