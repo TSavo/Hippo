@@ -126,7 +126,7 @@ public class TickerDatabase {
 			order.child("type").setValue(trade.getType() == null ? null : trade.getType().toString().toLowerCase());
 
 		});
-		System.out.println("Committed: " + aList.size() + " " + exchangeName + " " + aList.size() + " orders.");
+		System.out.println("Committed to " + exchangeName + ": " + aList.size() + " orders.");
 	}
 
 	public static void close() {

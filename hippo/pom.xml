@@ -76,6 +76,11 @@
 			<artifactId>xchange-btc38</artifactId>
 			<version>3.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.xeiam.xchange</groupId>
+			<artifactId>xchange-yacuna</artifactId>
+			<version>3.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

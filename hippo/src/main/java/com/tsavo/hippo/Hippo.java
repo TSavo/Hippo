@@ -22,6 +22,7 @@ import com.xeiam.xchange.cryptsy.CryptsyExchange;
 import com.xeiam.xchange.currency.CurrencyPair;
 import com.xeiam.xchange.kraken.KrakenExchange;
 import com.xeiam.xchange.okcoin.OkCoinExchange;
+import com.xeiam.xchange.yacuna.YacunaExchange;
 
 public class Hippo {
 
@@ -56,12 +57,16 @@ public class Hippo {
 		bter.getExchangeSpecification().setSecretKey("63d5c7892f0831d8d04a9af8ddaefeb498ec0822edcf8b47073689f3783d2ee8");
 
 		exchanges.add(ExchangeFactory.INSTANCE.createExchange(bitfinexSpec));
-		// exchanges.add(bter);
+		exchanges.add(bter);
 		exchanges.add(ExchangeFactory.INSTANCE.createExchange(btceSpec));
 		Exchange referenceExchange = ExchangeFactory.INSTANCE.createExchange(cryptsy);
-		//exchanges.add(referenceExchange);
+		exchanges.add(referenceExchange);
 		
-		
+		Exchange yacuna = ExchangeFactory.INSTANCE.createExchange(YacunaExchange.class.getName());
+		yacuna.getExchangeSpecification().setApiKey("AAEAAAgfi0NutxlS0JuXBlez5MeK6PsB6b1-afrMV5iyAT6461D079U2");
+		yacuna.getExchangeSpecification().setSecretKey("36422983b180fbc37095bd9530869bc9");
+
+		//exchanges.add(yacuna); Not Implemented yet
 		ExchangeSpecification bitstamp = ExchangeFactory.INSTANCE.createExchange(BitstampExchange.class.getName()).getDefaultExchangeSpecification();
 		bitstamp.setUserName("67954");
 		bitstamp.setApiKey("sfk8Ie2VbEkQdz0sqzE3DCoZ9LkTGCcy");
@@ -73,7 +78,7 @@ public class Hippo {
 		kraken.getExchangeSpecification().setApiKey("U65ezt/UHp1l61CNTRchqz9gP8ApTGBonTK53M7xBh5CEp2FrCLxsAWE");
 		kraken.getExchangeSpecification().setSecretKey("y7Xv5rfE+bQ9hLy+Xd76sPIDibl38e4BYiC4iRRam+9aSr78CBAdToMgOPGukED0MJ3DleacCcmznVySGjvsPQ==");
 
-		//exchanges.add(kraken);
+		//exchanges.add(kraken); Not working right :(
 		
 		ExchangeSpecification coinbaseex = ExchangeFactory.INSTANCE.createExchange(CoinbaseExExchange.class.getName()).getDefaultExchangeSpecification();
 		coinbaseex.setApiKey("fb0ce60e6e91177a4a440f47c4a023f9");
