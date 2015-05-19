@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonTypeInfo(use = JsonTypeInfo.Id.MINIMAL_CLASS, include = JsonTypeInfo.As.PROPERTY, property = "class")
 public class ExponentialWeightedMovingAverageFunction extends WeightedMovingAverageFunction {
 
-	BigDecimal weight = new BigDecimal(0.8f);
+	BigDecimal weight = BigDecimal.ONE;
 
 	public ExponentialWeightedMovingAverageFunction(int aWindowSize){
 		super(aWindowSize);

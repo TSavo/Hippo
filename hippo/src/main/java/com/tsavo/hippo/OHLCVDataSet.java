@@ -17,7 +17,7 @@ import org.joda.time.Duration;
 import com.xeiam.xchange.dto.marketdata.Trade;
 
 public class OHLCVDataSet implements SortedSet<OHLCVData> {
-	SortedSet<OHLCVData> data = new TreeSet<>();
+	TreeSet<OHLCVData> data = new TreeSet<>();
 	public Duration duration;
 
 	public OHLCVDataSet(Duration aDuration) {
