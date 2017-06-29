@@ -1,0 +1,5 @@
+#surefire
+#Thu Jun 29 06:55:31 UTC 2017
+user.dir=/app
+localRepository=/root/.m2/repository
+basedir=/app

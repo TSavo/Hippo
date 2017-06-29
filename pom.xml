@@ -69,17 +69,21 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2.1</version>
-				<configuration>
-					<mainClass>com.tsavo.hippo.Hippo</mainClass>
-					<arguments>
-						<argument>argument1</argument>
-					</arguments>
-				</configuration>
-			</plugin>
+<plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <configuration>
+          <executable>java</executable>
+          <arguments>
+            <argument>-Xms512m</argument>
+            <argument>-Xmx512m</argument>
+            <argument>-XX:NewRatio=3</argument>
+            <argument>-classpath</argument>
+            <classpath/>
+            <argument>com.tsavo.hippo.Hippo</argument>
+          </arguments>
+        </configuration>
+      </plugin>
 		</plugins>
 	</build>
 </project>
