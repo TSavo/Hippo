@@ -5,9 +5,19 @@ import org.joda.time.format.PeriodFormatterBuilder;
 import org.knowm.xchange.Exchange;
 import org.knowm.xchange.ExchangeFactory;
 import org.knowm.xchange.ExchangeSpecification;
+import org.knowm.xchange.bitbay.BitbayExchange;
+import org.knowm.xchange.bitfinex.v1.BitfinexExchange;
+import org.knowm.xchange.bitmarket.BitMarketExchange;
+import org.knowm.xchange.bitstamp.BitstampExchange;
 import org.knowm.xchange.bittrex.v1.BittrexExchange;
+import org.knowm.xchange.cexio.CexIOExchange;
+import org.knowm.xchange.coinbase.CoinbaseExchange;
+import org.knowm.xchange.gdax.GDAXExchange;
+import org.knowm.xchange.gemini.v1.GeminiExchange;
+import org.knowm.xchange.hitbtc.HitbtcExchange;
+import org.knowm.xchange.itbit.v1.ItBitExchange;
+import org.knowm.xchange.kraken.KrakenExchange;
 import org.knowm.xchange.okcoin.OkCoinExchange;
-import org.knowm.xchange.poloniex.Poloniex;
 import org.knowm.xchange.poloniex.PoloniexExchange;
 
 import java.util.ArrayList;
@@ -16,9 +26,10 @@ import java.util.List;
 public class Hippo {
 
 	public static void main(String[] args) throws InterruptedException {
+
+
 		List<Exchange> exchanges = new ArrayList<>();
 		//ExchangeSpecification cryptsy = new ExchangeSpecification(CryptsyExchange.class);
-
 
 		Exchange okcoin = new OkCoinExchange();
 		ExchangeSpecification okcoinSpec = okcoin.getDefaultExchangeSpecification();
@@ -38,11 +49,45 @@ public class Hippo {
 		poloniex.applySpecification(poloniexSpec);
 		exchanges.add(poloniex);
 
+		Exchange bitfinexExchange = new BitfinexExchange();
+		ExchangeSpecification bitfinexSpec = bitfinexExchange.getDefaultExchangeSpecification();
+		bitfinexExchange.applySpecification(bitfinexSpec);
+		exchanges.add(bitfinexExchange);
 
 		Exchange bittrex = new BittrexExchange();
 		ExchangeSpecification bittrexSpec = bittrex.getDefaultExchangeSpecification();
 		bittrex.applySpecification(bittrexSpec);
 		exchanges.add(bittrex);
+
+
+		Exchange gdax = new GDAXExchange();
+		ExchangeSpecification gdaxSpec = gdax.getDefaultExchangeSpecification();
+		gdax.applySpecification(gdaxSpec);
+		exchanges.add(gdax);
+
+		Exchange cexio = new CexIOExchange();
+		ExchangeSpecification cexioSpec = cexio.getDefaultExchangeSpecification();
+		cexio.applySpecification(cexioSpec);
+		exchanges.add(cexio);
+
+		Exchange gemini = new GeminiExchange();
+		ExchangeSpecification geminiSpec = gemini.getDefaultExchangeSpecification();
+		gemini.applySpecification(geminiSpec);
+		exchanges.add(gemini);
+
+		Exchange hitbtc = new HitbtcExchange();
+		hitbtc.applySpecification(hitbtc.getDefaultExchangeSpecification());
+		exchanges.add(hitbtc);
+
+		Exchange bitstamp = new BitstampExchange();
+		bitstamp.applySpecification(bitstamp.getDefaultExchangeSpecification());
+		exchanges.add(bitstamp);
+
+		Exchange bitmarket = new BitMarketExchange();
+		bitmarket.applySpecification(bitmarket.getDefaultExchangeSpecification());
+		exchanges.add(bitmarket);
+
+
 
 		List<LiveTickerWriter> tickers = new ArrayList<>();
 //		List<LiveFutureTickerWriter> futureTickers = new ArrayList<>();

@@ -6,6 +6,8 @@ import org.knowm.xchange.dto.marketdata.Trade;
 import org.knowm.xchange.exceptions.ExchangeException;
 import org.knowm.xchange.exceptions.NotAvailableFromExchangeException;
 import org.knowm.xchange.exceptions.NotYetImplementedForExchangeException;
+import org.knowm.xchange.gemini.v1.dto.GeminiException;
+import si.mazi.rescu.HttpStatusIOException;
 
 import java.util.*;
 
@@ -19,7 +21,7 @@ public class LiveTickerWriter {
 
 	public LiveTickerWriter(final Exchange anExchange) {
 		exchange = anExchange;
-		db = new TickerDatabase(anExchange.getExchangeSpecification().getExchangeName());
+		db = new MongoTickerDatabase(anExchange.getExchangeSpecification().getExchangeName());
 		try {
 			for (CurrencyPair pair : anExchange.getExchangeSymbols()) {
 				// TickerDatabase db = new
@@ -41,12 +43,14 @@ public class LiveTickerWriter {
 								Set<Trade> notSeen = new HashSet<>(newTrades);
 								notSeen.removeAll(lastTrades.get(pair));
 								lastTrades.put(pair, newTrades);
-								db.putAll(notSeen);
+								db.putAll(pair, notSeen);
 								try {
 									Thread.sleep(1000);
 								} catch (InterruptedException e) {
 									return;
 								}
+							}catch(GeminiException | ExchangeException | HttpStatusIOException e) {
+
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
