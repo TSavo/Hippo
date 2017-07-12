@@ -59,6 +59,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.xchange</groupId>
+			<artifactId>xchange-yobit</artifactId>
+			<version>4.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.knowm.xchange</groupId>
 			<artifactId>xchange-kraken</artifactId>
 			<version>4.2.0</version>
 		</dependency>

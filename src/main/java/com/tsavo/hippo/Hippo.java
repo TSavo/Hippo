@@ -19,6 +19,7 @@ import org.knowm.xchange.itbit.v1.ItBitExchange;
 import org.knowm.xchange.kraken.KrakenExchange;
 import org.knowm.xchange.okcoin.OkCoinExchange;
 import org.knowm.xchange.poloniex.PoloniexExchange;
+import org.knowm.xchange.yobit.YoBitExchange;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +87,10 @@ public class Hippo {
 		Exchange bitmarket = new BitMarketExchange();
 		bitmarket.applySpecification(bitmarket.getDefaultExchangeSpecification());
 		exchanges.add(bitmarket);
+
+		Exchange yobit = new YoBitExchange();
+		yobit.applySpecification(yobit.getDefaultExchangeSpecification());
+		exchanges.add(yobit);
 
 
 
