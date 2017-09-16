@@ -6,86 +6,97 @@
 	<version>0.0.2-SNAPSHOT</version>
 	<name>Hippo</name>
 	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-nop</artifactId>
+			<version>1.8.0-alpha2</version>
+		</dependency>
 		<!-- XChange dependencies -->
 		<dependency>
 			<groupId>org.knowm.xchange</groupId>
 			<artifactId>xchange-core</artifactId>
-			<version>4.2.0</version>
+			<version>4.2.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.xchange</groupId>
 			<artifactId>xchange-poloniex</artifactId>
-			<version>4.2.0</version>
+			<version>4.2.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.xchange</groupId>
 			<artifactId>xchange-bittrex</artifactId>
-			<version>4.2.0</version>
+			<version>4.2.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.xchange</groupId>
 			<artifactId>xchange-okcoin</artifactId>
-			<version>4.2.0</version>
+			<version>4.2.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.xchange</groupId>
 			<artifactId>xchange-bitfinex</artifactId>
-			<version>4.2.0</version>
+			<version>4.2.2-SNAPSHOT</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.knowm.xchange</groupId>
 			<artifactId>xchange-itbit</artifactId>
-			<version>4.2.0</version>
+			<version>4.2.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.xchange</groupId>
 			<artifactId>xchange-hitbtc</artifactId>
-			<version>4.2.0</version>
+			<version>4.2.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.knowm.xchange</groupId>
+			<artifactId>xchange-cryptopia</artifactId>
+			<version>4.2.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.xchange</groupId>
 			<artifactId>xchange-bitstamp</artifactId>
-			<version>4.2.0</version>
+			<version>4.2.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.xchange</groupId>
 			<artifactId>xchange-bitbay</artifactId>
-			<version>4.2.0</version>
+			<version>4.2.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.xchange</groupId>
 			<artifactId>xchange-bitmarket</artifactId>
-			<version>4.2.0</version>
+			<version>4.2.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.xchange</groupId>
 			<artifactId>xchange-yobit</artifactId>
-			<version>4.2.0</version>
+			<version>4.2.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.xchange</groupId>
 			<artifactId>xchange-kraken</artifactId>
-			<version>4.2.0</version>
+			<version>4.2.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.xchange</groupId>
 			<artifactId>xchange-gemini</artifactId>
-			<version>4.2.0</version>
+			<version>4.2.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.xchange</groupId>
 			<artifactId>xchange-coinbase</artifactId>
-			<version>4.2.0</version>
+			<version>4.2.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.xchange</groupId>
 			<artifactId>xchange-gdax</artifactId>
-			<version>4.2.0</version>
+			<version>4.2.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.xchange</groupId>
 			<artifactId>xchange-cexio</artifactId>
-			<version>4.2.0</version>
+			<version>4.2.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.firebase</groupId>

@@ -7,7 +7,6 @@ import org.knowm.xchange.exceptions.ExchangeException;
 import org.knowm.xchange.exceptions.NotAvailableFromExchangeException;
 import org.knowm.xchange.exceptions.NotYetImplementedForExchangeException;
 import org.knowm.xchange.gemini.v1.dto.GeminiException;
-import si.mazi.rescu.HttpStatusIOException;
 
 import java.util.*;
 
@@ -49,7 +48,7 @@ public class LiveTickerWriter {
 								} catch (InterruptedException e) {
 									return;
 								}
-							}catch(GeminiException | ExchangeException | HttpStatusIOException e) {
+							}catch(GeminiException | ExchangeException e){
 
 							} catch (Exception e) {
 								e.printStackTrace();
