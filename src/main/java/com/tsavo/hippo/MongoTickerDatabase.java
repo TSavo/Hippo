@@ -24,7 +24,7 @@ public class MongoTickerDatabase implements TickerDatabase {
 
     }
 
-    private final String exchange;
+    public final String exchange;
 
     public MongoTickerDatabase(String anExchangeName) {
         this.exchange = anExchangeName;
