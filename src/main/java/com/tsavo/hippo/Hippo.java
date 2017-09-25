@@ -8,12 +8,11 @@ import org.knowm.xchange.ExchangeSpecification;
 import org.knowm.xchange.bitfinex.v1.BitfinexExchange;
 import org.knowm.xchange.bitmarket.BitMarketExchange;
 import org.knowm.xchange.bitstamp.BitstampExchange;
-import org.knowm.xchange.bittrex.v1.BittrexExchange;
+import org.knowm.xchange.bittrex.BittrexExchange;
 import org.knowm.xchange.cexio.CexIOExchange;
 import org.knowm.xchange.cryptopia.CryptopiaExchange;
 import org.knowm.xchange.gdax.GDAXExchange;
 import org.knowm.xchange.gemini.v1.GeminiExchange;
-import org.knowm.xchange.hitbtc.HitbtcExchange;
 import org.knowm.xchange.okcoin.OkCoinExchange;
 import org.knowm.xchange.poloniex.PoloniexExchange;
 

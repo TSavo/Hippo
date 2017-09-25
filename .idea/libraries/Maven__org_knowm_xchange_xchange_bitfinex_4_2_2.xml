@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.knowm.xchange:xchange-bitfinex:4.2.2">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/knowm/xchange/xchange-bitfinex/4.2.2/xchange-bitfinex-4.2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/knowm/xchange/xchange-bitfinex/4.2.2/xchange-bitfinex-4.2.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/knowm/xchange/xchange-bitfinex/4.2.2/xchange-bitfinex-4.2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
