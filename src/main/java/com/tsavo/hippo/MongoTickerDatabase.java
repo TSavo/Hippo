@@ -56,12 +56,9 @@ public class MongoTickerDatabase implements TickerDatabase {
 
     public void putAll(CurrencyPair aPair, Set<Trade> someTrades) {
         DBCollection collection = db.getCollection(exchange + "-" + aPair);
-        //BulkWriteOperation bulkWriteOperation = collection.initializeUnorderedBulkOperation();
         someTrades.forEach(x -> {
-            //bulkWriteOperation.find(new BasicDBObject("_id", x.getId())).upsert().updateOne(new BasicDBObject("$set", toDBOject(x)));
             collection.update(new BasicDBObject("_id", x.getId()), new BasicDBObject("$set", toDBOject(x)), true, false);
         });
-        //bulkWriteOperation.execute();
     }
 
     @Override
