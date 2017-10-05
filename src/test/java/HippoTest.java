@@ -17,7 +17,7 @@ public class HippoTest {
         TickerDatabase ticker = new MongoTickerDatabase("Bittrex");
         Set<Trade> rawPriceData = ticker.get(new CurrencyPair("BTC", "USDT"));
         OHLCVDataSet data = new OHLCVDataSet(rawPriceData, Duration.standardHours(1));
-        WeightedMovingAverageFunction wma = new WeightedMovingAverageFunction(10);
+        WeightedMovingAverageFunction wma = new WeightedMovingAverageFunction(12);
         data.stream().map(x -> new WeightedSample(x.volume, BigDecimal.ONE)).forEach(x -> {
             wma.addSample(x);
             System.out.println(wma.getAverage());
