@@ -45,6 +45,12 @@ new LiveTickerWriter(exchange);
 
 And watch the data stream in!
 
+## Build docker image from Dockerfile 
+
+```
+docker build . -t tsavo/hippo:latest
+```
+
 ---
 
 All software is Copyright of Travis Savo <evilgenius@nefariousplan.com> and is licensed under the Apache License Version 2.0 AS IS without any guarentee that it will work or not do something stupid.
