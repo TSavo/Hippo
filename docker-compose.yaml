@@ -1,0 +1,34 @@
+version: '2'
+services:
+        mongodb:
+                image: mongo
+                restart: always
+                container_name: mongocrypto
+                environment:
+                        - MONGO_INITDB_ROOT_USERNAME=crypto-admin
+                        - MONGO_INITDB_ROOT_PASSWORD=crypto-admin
+                        - MONGO_DATA_DIR=/data/db
+                        - MONGO_LOG_DIR=/dev/null
+                volumes:
+                        - ./mongo.docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+                        - ./data/db:/data/db
+                ports:
+                        - 27017:27017
+                command: '--auth' 
+
+        hippo:
+                depends_on:
+                        - mongodb
+                image: tsavo/hippo:latest               
+                restart: always
+                working_dir: /app
+                environment:
+                        - HIPPO_DB_URL=mongocrypto
+                        - HIPPO_DB_NAME=cryptomarket
+                        - HIPPO_DB_USERNAME=crypto-rw
+                        - HIPPO_DB_PASSWORD=crypto-rw
+                volumes:
+                        - .:/app        
+                command: mvn install exec:exec
+                links:
+                        - mongodb:mongocrypto
